@@ -12,8 +12,6 @@ async function getData() {
         };
     });
 
-    console.log(dataHistories);
-
     return dataHistories;
 }
 

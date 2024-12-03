@@ -9,8 +9,8 @@ const InferenceError = require("../exceptions/InferenceError");
 
 (async () => {
     const server = Hapi.server({
-        port: 8000,
-        host: "localhost",
+        port: 8080,
+        host: process.env.APP_ENV === "prod" ? "0.0.0.0" : "localhost",
         routes: {
             cors: {
                 origin: ['*'],
