@@ -1,9 +1,10 @@
 const tf = require("@tensorflow/tfjs-node");
+const InferenceError = require("../exceptions/InferenceError");
 
 async function predictClassification(model, image) {
     try {
         const tensor = tf.node
-            .decodeJpeg(image)
+            .decodeImage(image)
             .resizeNearestNeighbor([224, 224])
             .expandDims()
             .toFloat();
@@ -28,7 +29,7 @@ async function predictClassification(model, image) {
             suggestion: suggestion,
         };
     } catch (error) {
-        throw new Error("Terjadi kesalahan dalam melakukan prediksi");
+        throw new InferenceError(`Terjadi kesalahan dalam melakukan prediksi`);
     }
 }
 
